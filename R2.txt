@@ -1,0 +1,24 @@
+mpls ldp router-id loopback10000
+!
+router isis
+ net 49.0000.0000.0000.0002.00
+ is-type level-2
+ metric-style wide
+!
+Interface E 0/0
+ ip router isis
+ mpls ip
+!
+Interface E 0/1
+ ip router isis
+ mpls ip
+!
+Interface E 0/2
+ ip router isis
+ mpls ip
+!
+Interface loopback 10
+ ip router isis
+!
+Interface loopback99
+ ip router isis

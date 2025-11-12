@@ -1,0 +1,23 @@
+crypto isakmp policy 10
+ authentication pre-share 
+hash md5
+ encryption 3des
+ group 2
+!
+crypto isakmp key Cisco123 address 192.1.10.1
+!
+crypto ipsec transform-set TSET esp-sha-hmac esp-3des
+!
+crypto ipsec profile IPROF
+ set transform-set TSET
+!
+Interface Tunnel 6
+ Tunnel destination 192.1.10.1
+ Tunnel Source E0/0
+ ip address 192.168.1.2 255.255.255.0
+ Tunnel mode ipsec ipv4
+ Tunnel protection ipsec profile IPROF
+!
+router eigrp 12353
+ network 10.0.0.0
+ network 192.168.1.2 0.0.0.0
